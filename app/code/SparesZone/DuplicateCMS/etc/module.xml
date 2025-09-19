@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--/**
+ * Spares Zone
+ *
+ * @package     SparesZone_DuplicateCMS
+ * @copyright   Copyright (c) Spares Zone (https://www.spareszone.in/)
+ * @license     https://www.spareszone.in/LICENSE.txt
+ */-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="SparesZone_DuplicateCMS" setup_version="1.0.0">
+         <sequence>
+            <module name="Magento_Cms"/>
+            <module name="SparesZone_Core"/>
+        </sequence>
+    </module>
+</config>

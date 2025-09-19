@@ -1,0 +1,51 @@
+<div id="custom-form">
+   <form class="contact custom" 
+         action="<?= $escaper->escapeHtml($block->getUrl('crud/index/save', ['_secure' => true]));?>"
+         id="custom-form"
+         method="post"
+         data-hasrequired="<?=  $escaper->escapeHtml(__('* Required Fields')) ?>"
+         data-mage-init='{"validation":{}}'>
+ 
+        <fieldset class="fieldset">
+            <legend class="legend"><span><?=  $escaper->escapeHtml(__("Contact")) ?></span></legend><br />
+            <div class="field name required">
+                <label class="label" for="name"><span><?=  $escaper->escapeHtml(__('Name')) ?></span></label>
+                <div class="control">
+                    <input name="name" id="name" title="<?=  $escaper->escapeHtml(__('Name')) ?>"
+                      class="input-text" type="text" data-validate="{required:true}"/>
+                </div>
+            </div>
+            <div class="field email required">
+                <label class="label" for="email"><span><?=  $escaper->escapeHtml(__('Email')) ?></span></label>
+                <div class="control">
+                    <input name="email" id="email" title="<?=  $escaper->escapeHtml(__('Email')) ?>"
+                      class="input-text" type="text" data-validate="{required:true}"/>
+                </div>
+            </div>
+            <div class="field phone_no">
+                <label class="label" for="phone_no"><span><?=  $escaper->escapeHtml(__('Contact No')) ?></span></label>
+                <div class="control">
+                    <input name="phone_no" id="phone_no" title="<?=  $escaper->escapeHtml(__('Contact No')) ?>"
+                    class="input-text" type="text"/>
+                </div>
+            </div>
+            <div class="field message">
+                <label class="label" for="message"><span><?=  $escaper->escapeHtml(__('Message')) ?></span></label>
+                <div class="control">
+                    <input name="message" id="message" title="<?=  $escaper->escapeHtml(__('Message')) ?>"
+                    class="input-text" type="text"/>
+                </div>
+            </div>
+        </fieldset>
+    
+        <div class="actions-toolbar">
+            <div class="primary">
+                <input type="hidden" name="hideit" id="hideit" value="" />
+                <button type="submit" title="<?=  $escaper->escapeHtml(__('Submit')) ?>"
+                class="action submit primary" id="custom_btn">
+                    <span><?=  $escaper->escapeHtml(__('Submit')) ?></span>
+                </button>
+            </div>
+        </div>
+   </form>
+</div>

@@ -1,0 +1,26 @@
+/**
+ * Spares Zone
+ *
+ * @package     SparesZone_Core
+ * @copyright   Copyright (c) Spares Zone (https://www.spareszone.in/)
+ * @license     https://www.spareszone.in/LICENSE.txt
+ */
+
+@spareszone-logo-tab-url: url('../SparesZone_Core/images/spareszone-logo-resize-dark-blue.svg');
+
+
+.config-nav .spareszone-tab .admin__page-nav-title::before {
+    content: '';
+    background-image: @spareszone-logo-tab-url;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position: 0 0;
+    height: 60px;
+    position: absolute;
+    width: 30px;
+    top: 15px;
+}
+
+.config-nav .spareszone-tab .admin__page-nav-title strong {
+    margin-left: 25px;
+}

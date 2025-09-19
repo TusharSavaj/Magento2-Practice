@@ -1,0 +1,61 @@
+<?php $featureConfigViewModel = $block->getData('view_model'); ?>
+<?php $coloradd = $featureConfigViewModel->getAddRecordTextBg(); ?>
+<?php $bgcoloradd = $featureConfigViewModel->getAddRecordBg(); ?>
+<?php if($featureConfigViewModel->getAddRecordEnabled()): ?>
+        <button style="background-color: <?php echo $bgcoloradd; ?>; padding: 10px 20px; border: none; border-radius: 5px;">
+   <a style="text-decoration:none; color: <?php echo $coloradd; ?>;" href="<?= $block->getUrl('crud/index/insert'); ?>"><?php echo $featureConfigViewModel->getAddRecordTitle();?></a>
+        </button>
+<?php endif; ?>
+<table>
+    <tr>
+        <th><?= __('Name'); ?></th>
+        <th><?= __('Email'); ?></th>
+        <th><?= __('Contact No'); ?></th>
+        <th><?= __('Message'); ?></th>
+        <th><?= __('Created At'); ?></th>
+        <th><?= __('Updated At'); ?></th>
+        <th colspan="2"><?= __('Action'); ?></th>
+    </tr>
+    <?php
+        $collectionData = $block->getUserData();
+        foreach($collectionData as $collection):
+    ?>
+    <tr>
+        <td><?= $collection->getName(); ?></td>
+        <td><?= $collection->getEmail(); ?></td>
+        <td><?= $collection->getPhoneNo(); ?></td>
+        <td><?= $collection->getMessage(); ?></td>
+        <td><?= $collection->getCreatedAt(); ?></td>
+        <td><?= $collection->getUpdatedAt(); ?></td>
+        <td>
+            
+            
+            <?php $coloredit = $featureConfigViewModel->getEditTitle(); ?>
+            <?php $bgcoloredit = $featureConfigViewModel->getEditBg(); ?>
+            <?php if($featureConfigViewModel->getEditEnabled()): ?>
+                <button style="background-color: <?php echo $bgcoloredit; ?>; padding: 10px 20px; border: none; border-radius: 5px;">
+            <a style="text-decoration:none; color: <?php echo $coloredit; ?>;" href="<?= $block->getUrl('crud/index/edit').'id/'.$collection->getId(); ?>"><?php echo $featureConfigViewModel->getEditTextBg();?></a>
+            </button>
+            <?php endif; ?>
+        </td>
+        <td>
+            <?php $colordelete = $featureConfigViewModel->getDeleteTextBg(); ?>
+            <?php $bgcolordelete = $featureConfigViewModel->getDeleteBg(); ?>
+            <?php if($featureConfigViewModel->getDeleteEnable()): ?>
+                <button style="background-color: <?php echo $bgcolordelete; ?>; padding: 10px 20px; border: none; border-radius: 5px;">
+            <a style="text-decoration:none; color: <?php echo $colordelete; ?>;" href="<?= $block->getUrl('crud/index/delete').'?id='.$collection->getId(); ?>"><?php echo $featureConfigViewModel->getDeleteTitle();?></a>
+            </button>
+            <?php endif; ?>
+        </td>
+    </tr>
+ 
+    <?php endforeach; ?>
+</table>
+<?php
+
+/** @var \ExampleCorp\Catalog\ViewModel\MyNewViewModel $viewModel */
+$viewModel = $block->getViewModel();
+
+?>
+
+

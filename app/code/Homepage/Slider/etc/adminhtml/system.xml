@@ -1,0 +1,554 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="homepage" translate="label" sortOrder="1000">
+            <label>Homepage</label>
+        </tab>
+        <section id="slider" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Slider</label>
+            <tab>homepage</tab>
+            <resource>Homepage_Slider::configuration</resource>
+
+            <!-- <group id="general" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+
+                <field id="enabled" translate="label comment tooltip" type="select" sortOrder="1"
+                       showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <config_path>slider/general/enabled</config_path>
+                    <comment>Helpful message about using this field.</comment>
+                    <tooltip>Longer helpful message about using this field.</tooltip>
+                </field>
+
+                <field id="title" type="text" translate="label" sortOrder="20"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Title</label>
+                    <validate>required-entry alphanumeric</validate>
+                    <config_path>slider/general/title</config_path>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="secret_key" type="obscure" translate="label" sortOrder="30"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Secret Key</label>
+                    <validate>required-entry</validate>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                    <config_path>slider/general/secret_key</config_path>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="option" type="select" translate="label" sortOrder="40"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Option</label>
+                    <source_model>Sample\Crud\Model\Config\Source\Option</source_model>
+                    <config_path>slider/general/option</config_path>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group> -->
+
+            <group id="bestseller" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Best Seller</label>
+
+                <field id="enabled" translate="label comment tooltip" type="select" sortOrder="1"
+                       showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <config_path>slider/bestseller/enabled</config_path>
+                    <comment>Helpful message about using this field.</comment>
+                    <tooltip>Longer helpful message about using this field.</tooltip>
+                </field>
+
+                <field id="title" type="text" translate="label" sortOrder="19"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Slider Tittle</label>
+                    <validate>required-entry</validate>
+                    <!-- <source_model>Homepage\Slider\Model\Config\Source\Option</source_model> -->
+                    <config_path>slider/bestseller/title</config_path>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="product_show" type="text" translate="label" sortOrder="20"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Total View Product in </label>
+                    <validate>validate-number</validate>
+                    <source_model>Homepage\Slider\Model\Config\Source\Option</source_model>
+                    <config_path>slider/bestseller/product_show</config_path>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="product_slider_item" type="text" translate="label" sortOrder="20"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product Slider Items</label>
+                    <validate>validate-number</validate>
+                    <source_model>Homepage\Slider\Model\Config\Source\Option</source_model>
+                    <config_path>slider/bestseller/product_slider_item</config_path>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="click_slide" type="select" translate="label" sortOrder="30"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Click To Slide</label>
+                    <source_model>Homepage\Slider\Model\Config\Source\Option</source_model>
+                    <config_path>slider/bestseller/click_slide</config_path>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="add_to_cart_display" translate="label comment tooltip" type="select" sortOrder="30"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Add To Cart On</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <!-- <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model> -->
+                    <config_path>slider/bestseller/add_to_cart_display</config_path>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="wishlist_button_display" translate="label comment tooltip" type="select" sortOrder="30"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Wishlist Button On</label>
+                    <validate>required-entry</validate>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <!-- <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model> -->
+                    <config_path>slider/bestseller/wishlist_button_display</config_path>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="background_color" translate="label" sortOrder="20" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Text Background Color</label>
+                    <validate>required-entry</validate>
+                    <frontend_model>Homepage\Slider\Model\Config\Source\Color</frontend_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+
+                <!-- Uncomment if needed and correct path
+                <field id="option" type="select" translate="label" sortOrder="40"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Edit Title</label>
+                    <source_model>Homepage\Slider\Model\Config\Source\Option</source_model>
+                    <config_path>slider/bestseller/option</config_path>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                -->
+            </group>
+
+            <group id="mostview" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Most View</label>
+
+                <field id="enabled" translate="label comment tooltip" type="select" sortOrder="1"
+                       showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <config_path>slider/mostview/enabled</config_path>
+                    <comment>Helpful message about using this field.</comment>
+                    <tooltip>Longer helpful message about using this field.</tooltip>
+                </field>
+
+                <field id="title" type="text" translate="label" sortOrder="19"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Slider Tittle</label>
+                    <!-- <source_model>Homepage\Slider\Model\Config\Source\Option</source_model> -->
+                    <config_path>slider/mostview/title</config_path>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="product_show" type="text" translate="label" sortOrder="20"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Total View Product in </label>
+                    <validate>validate-number</validate>
+                    <source_model>Homepage\Slider\Model\Config\Source\Option</source_model>
+                    <config_path>slider/mostview/product_show</config_path>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="product_slider_item" type="text" translate="label" sortOrder="20"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product Slider Items</label>
+                    <validate>validate-number</validate>
+                    <source_model>Homepage\Slider\Model\Config\Source\Option</source_model>
+                    <config_path>slider/mostview/product_slider_item</config_path>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="click_slide" type="select" translate="label" sortOrder="30"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Click To Slide</label>
+                    <source_model>Homepage\Slider\Model\Config\Source\Option</source_model>
+                    <config_path>slider/mostview/click_slide</config_path>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="add_to_cart_display" translate="label comment tooltip" type="select" sortOrder="30"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Add To Cart On</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <!-- <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model> -->
+                    <config_path>slider/mostview/add_to_cart_display</config_path>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="wishlist_button_display" translate="label comment tooltip" type="select" sortOrder="30"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Wishlist Button On</label>
+                    <validate>required-entry</validate>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <!-- <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model> -->
+                    <config_path>slider/mostview/wishlist_button_display</config_path>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="background_color" translate="label" sortOrder="20" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Text Background Color</label>
+                    <validate>required-entry</validate>
+                    <frontend_model>Homepage\Slider\Model\Config\Source\Color</frontend_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+
+                <!-- Uncomment if needed and correct path
+                <field id="option" type="select" translate="label" sortOrder="40"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Edit Title</label>
+                    <source_model>Homepage\Slider\Model\Config\Source\Option</source_model>
+                    <config_path>slider/bestseller/option</config_path>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                -->
+            </group>
+
+            <group id="feature_product" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Feature Product</label>
+
+                <field id="enabled" translate="label comment tooltip" type="select" sortOrder="1"
+                       showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <config_path>slider/feature_product/enabled</config_path>
+                    <comment>Helpful message about using this field.</comment>
+                    <tooltip>Longer helpful message about using this field.</tooltip>
+                </field>
+
+                <field id="title" type="text" translate="label" sortOrder="19"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Slider Tittle</label>
+                    <!-- <source_model>Homepage\Slider\Model\Config\Source\Option</source_model> -->
+                    <config_path>slider/feature_product/title</config_path>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="product_show" type="text" translate="label" sortOrder="20"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Total View Product in </label>
+                    <validate>validate-number</validate>
+                    <source_model>Homepage\Slider\Model\Config\Source\Option</source_model>
+                    <config_path>slider/feature_product/product_show</config_path>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="product_slider_item" type="text" translate="label" sortOrder="20"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product Slider Items</label>
+                    <validate>validate-number</validate>
+                    <source_model>Homepage\Slider\Model\Config\Source\Option</source_model>
+                    <config_path>slider/feature_product/product_slider_item</config_path>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="click_slide" type="select" translate="label" sortOrder="30"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Click To Slide</label>
+                    <source_model>Homepage\Slider\Model\Config\Source\Option</source_model>
+                    <config_path>slider/feature_product/click_slide</config_path>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="add_to_cart_display" translate="label comment tooltip" type="select" sortOrder="30"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Add To Cart On</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <!-- <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model> -->
+                    <config_path>slider/feature_product/add_to_cart_display</config_path>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="wishlist_button_display" translate="label comment tooltip" type="select" sortOrder="30"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Wishlist Button On</label>
+                    <validate>required-entry</validate>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <!-- <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model> -->
+                    <config_path>slider/feature_product/wishlist_button_display</config_path>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="background_color" translate="label" sortOrder="20" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Text Background Color</label>
+                    <validate>required-entry</validate>
+                    <frontend_model>Homepage\Slider\Model\Config\Source\Color</frontend_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+
+                <!-- Uncomment if needed and correct path
+                <field id="option" type="select" translate="label" sortOrder="40"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Edit Title</label>
+                    <source_model>Homepage\Slider\Model\Config\Source\Option</source_model>
+                    <config_path>slider/bestseller/option</config_path>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                -->
+            </group>
+
+            <group id="new_product" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>New Product</label>
+
+                <field id="enabled" translate="label comment tooltip" type="select" sortOrder="1"
+                       showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <config_path>slider/new_product/enabled</config_path>
+                    <comment>Helpful message about using this field.</comment>
+                    <tooltip>Longer helpful message about using this field.</tooltip>
+                </field>
+
+                <field id="title" type="text" translate="label" sortOrder="19"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Slider Tittle</label>
+                    <!-- <source_model>Homepage\Slider\Model\Config\Source\Option</source_model> -->
+                    <config_path>slider/new_product/title</config_path>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="product_show" type="text" translate="label" sortOrder="20"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Total View Product in </label>
+                    <validate>validate-number</validate>
+                    <source_model>Homepage\Slider\Model\Config\Source\Option</source_model>
+                    <config_path>slider/new_product/product_show</config_path>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="product_slider_item" type="text" translate="label" sortOrder="20"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product Slider Items</label>
+                    <validate>validate-number</validate>
+                    <config_path>slider/new_product/product_slider_item</config_path>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="click_slide" type="select" translate="label" sortOrder="30"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Click To Slide</label>
+                    <source_model>Homepage\Slider\Model\Config\Source\Option</source_model>
+                    <config_path>slider/new_product/click_slide</config_path>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="add_to_cart_display" translate="label comment tooltip" type="select" sortOrder="30"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Add To Cart On</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <!-- <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model> -->
+                    <config_path>slider/new_product/add_to_cart_display</config_path>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="wishlist_button_display" translate="label comment tooltip" type="select" sortOrder="30"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Wishlist Button On</label>
+                    <validate>required-entry</validate>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <!-- <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model> -->
+                    <config_path>slider/new_product/wishlist_button_display</config_path>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="background_color" translate="label" sortOrder="20" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Text Background Color</label>
+                    <validate>required-entry</validate>
+                    <frontend_model>Homepage\Slider\Model\Config\Source\Color</frontend_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+
+                <!-- Uncomment if needed and correct path
+                <field id="option" type="select" translate="label" sortOrder="40"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Edit Title</label>
+                    <source_model>Homepage\Slider\Model\Config\Source\Option</source_model>
+                    <config_path>slider/bestseller/option</config_path>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                -->
+            </group>
+
+             <group id="recent_product" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Recent Product</label>
+
+                <field id="enabled" translate="label comment tooltip" type="select" sortOrder="1"
+                       showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <config_path>slider/recent_product/enabled</config_path>
+                    <comment>Helpful message about using this field.</comment>
+                    <tooltip>Longer helpful message about using this field.</tooltip>
+                </field>
+
+                <field id="title" type="text" translate="label" sortOrder="19"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Slider Tittle</label>
+                    <!-- <source_model>Homepage\Slider\Model\Config\Source\Option</source_model> -->
+                    <config_path>slider/recent_product/title</config_path>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="product_show" type="text" translate="label" sortOrder="20"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Total View Product in </label>
+                    <validate>validate-number</validate>
+                    <source_model>Homepage\Slider\Model\Config\Source\Option</source_model>
+                    <config_path>slider/recent_product/product_show</config_path>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="product_slider_item" type="text" translate="label" sortOrder="20"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product Slider Items</label>
+                    <validate>validate-number</validate>
+                    <!-- <source_model>Homepage\Slider\Model\Config\Source\Option</source_model> -->
+                    <config_path>slider/recent_product/product_slider_item</config_path>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="click_slide" type="select" translate="label" sortOrder="30"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Click To Slide</label>
+                    <source_model>Homepage\Slider\Model\Config\Source\Option</source_model>
+                    <!-- <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model> -->
+                    <config_path>slider/recent_product/click_slide</config_path>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="add_to_cart_display" translate="label comment tooltip" type="select" sortOrder="30"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Add To Cart On</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <!-- <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model> -->
+                    <config_path>slider/recent_product/add_to_cart_display</config_path>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="wishlist_button_display" translate="label comment tooltip" type="select" sortOrder="30"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Wishlist Button On</label>
+                    <validate>required-entry</validate>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <!-- <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model> -->
+                    <config_path>slider/recent_product/wishlist_button_display</config_path>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="background_color" translate="label" sortOrder="20" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Title Background Color</label>
+                    <validate>required-entry</validate>
+                    <frontend_model>Homepage\Slider\Model\Config\Source\Color</frontend_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                
+
+
+                <!-- Uncomment if needed and correct path
+                <field id="option" type="select" translate="label" sortOrder="40"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Edit Title</label>
+                    <source_model>Homepage\Slider\Model\Config\Source\Option</source_model>
+                    <config_path>slider/bestseller/option</config_path>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                -->
+            </group>
+
+        </section>
+    </system>
+</config>

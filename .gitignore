@@ -1,0 +1,118 @@
+# ----------------------------------------
+# Backup and log files
+# ----------------------------------------
+*.bak
+*.log
+*.swp
+*.tmp
+
+# ----------------------------------------
+# Build and Cache
+# ----------------------------------------
+/.buildpath
+/.cache
+/.grunt
+/generated/*
+!/generated/.htaccess
+/var/*
+!/var/.htaccess
+
+# ----------------------------------------
+# Composer and Node
+# ----------------------------------------
+/composer.lock
+/node_modules
+/package-lock.json
+/package.json
+/vendor/*
+!/vendor/.htaccess
+
+# ----------------------------------------
+# Docker / Warden (optional)
+# ----------------------------------------
+.docker/
+.warden/
+docker-compose.yml
+docker-compose.override.yml
+.env
+
+# ----------------------------------------
+# Environment and auth files
+# ----------------------------------------
+auth.json.sample
+.editorconfig
+
+# ----------------------------------------
+# Grunt Files
+# ----------------------------------------
+/Gruntfile.js
+/dev/tools/grunt/configs/themes.js
+grunt-config.json
+grunt-config.json.sample
+
+# ----------------------------------------
+# IDE and OS-specific files
+# ----------------------------------------
+/.idea
+/.metadata
+/.php-cs-fixer.php
+/.php-cs-fixer.cache
+/.php_cs
+/.php_cs.cache
+/.project
+/.settings
+/.vscode
+.DS_Store
+Thumbs.db
+
+# ----------------------------------------
+# Magento Specific Files
+# ----------------------------------------
+/app/config_sandbox
+/app/etc/env.php
+/app/etc/config.php
+/lib/internal/flex/uploader/.actionScriptProperties
+/lib/internal/flex/uploader/.flexProperties
+/lib/internal/flex/uploader/.project
+/lib/internal/flex/uploader/.settings
+/lib/internal/flex/varien/.actionScriptProperties
+/lib/internal/flex/varien/.flexLibProperties
+/lib/internal/flex/varien/.project
+/lib/internal/flex/varien/.settings
+
+# ----------------------------------------
+# Public Static (except .htaccess)
+# ----------------------------------------
+/pub/static/*
+/pub/media/porto/configed_css/
+!/pub/static/.htaccess
+/pub/media/porto/
+
+# ----------------------------------------
+# Sample, Setup and Server files
+# ----------------------------------------
+/dev/
+/phpserver/
+/setup/
+/sitemap
+/sitemap.xml
+COPYING.txt
+LICENSE.txt
+LICENSE_AFL.txt
+SECURITY.md
+CHANGELOG.md
+
+# ----------------------------------------
+# Server files
+# ----------------------------------------
+.htaccess
+.htaccess.sample
+.gitattributes
+nginx.conf.sample
+robots.txt
+/pub/robots.txt
+
+# ----------------------------------------
+# Zone.Identifier
+# ----------------------------------------
+*.Zone.Identifier

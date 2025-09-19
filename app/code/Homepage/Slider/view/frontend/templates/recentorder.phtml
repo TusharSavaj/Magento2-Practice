@@ -1,0 +1,216 @@
+<?php
+use Magento\Framework\App\Action\Action;
+
+$featureConfigViewModel = $block->getData('view_model');
+?>
+
+<?php if ($featureConfigViewModel->getEnabledRecent()): ?>
+    <?php $color = $featureConfigViewModel->getTittleColorRecent(); ?>
+<h2 style='color:<?= $escaper->escapeHtml($color); ?>'><center><b>
+    <?= $escaper->escapeHtml($featureConfigViewModel->getSliderTitleRecent()) ?>
+</b></center></h2>
+    <?php $showProduct = $featureConfigViewModel->getProductItemsRecent(); ?>
+    <?php if ($block->isCustomerLoggedIn()): ?>
+        <?php
+        $_productCollection = $block->getRecentOrders();
+        ?>
+        <?php if (count($_productCollection) <= 0): ?>
+    <h4><center>You Are Not Create Recent Order</center></h4>
+<?php else: ?>
+<div class="container-">
+    <?php $_helper = $this->helper('Magento\Catalog\Helper\Output'); ?>
+    <?php
+    $viewMode = 'grid';
+    $image = 'category_page_grid';
+    $showDescription = false;
+    $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+    $pos = $block->getPositioned();
+    $position = '';
+    $formKey = $block->getFormKey();
+    ?>
+<style>
+    .products-grid .product-item-inner{
+        margin:unset;
+    }
+    </style>
+    <?php $count = 1; ?>
+    <div class="ind-container">    
+        <div class=" products wrapper grid products-grid
+             <?= $escaper->escapeHtml($viewMode); ?> products-<?= $escaper->escapeHtml($viewMode); ?>">
+            <?php $iterator = 1; ?>
+            <div class="products grid items product-items slick-carousel" >
+                <?php $prdCount = 0; ?>
+                <?php $countp=0 ?>
+                <?php foreach ($_productCollection as $_product):  ?>
+                     <?php if ($countp >= $showProduct) {
+                            break;
+                     }?>
+                    <?php $_product = $block->getLoadProduct($_product->getEntityId()); ?>
+                    <div class="item product product-item">
+                        <div class="product-item-info item" data-container="product-grid">
+                            <?php
+                            $productImage = $block->getImage($_product, $image);
+                            if ($pos != null) {
+                                $position = ' style="left:' . $productImage->getWidth() . 'px;'
+                                    . 'top:' . $productImage->getHeight() . 'px;"';
+                            }
+                            ?>
+                            <?php // Product Image ?>
+                            <a href="<?= $escaper->escapeHtml($_product->getProductUrl()) ?>"
+                                 class="product photo product-item-photo" tabindex="-1">
+                                <?= /* @escapeNotVerified */ $productImage->toHtml(); ?>
+                                <div class="product-discount">
+                                    <?php $originalPrice = $_product->getPrice();
+                                        $finalPrice = $_product->getFinalPrice();
+                                        $discount = 0;
+                                    if ($originalPrice > $finalPrice) {
+                                        $discount = number_format(
+                                            ($originalPrice - $finalPrice) * 100 / $originalPrice,
+                                            0
+                                        );
+                                        ?>
+                                    <div class="price_section">
+                                        <span class=""><?= $escaper->escapeHtml($discount.'% Off'); ?></span>
+                                    </div>                            
+                                    <?php } ?>
+                                    <?php if ($featureConfigViewModel->getWishlistValueRecent()): ?>
+                                    <a href="#" 
+                                        class="action towishlist"
+                                        title="<?= $escaper->escapeHtml(__('Add to Wishlist')); ?>"
+                                        aria-label="<?= $escaper->escapeHtml(__('Add to Wishlist')); ?>"
+                                        data-post='<?= $escaper->escapeHtml(
+                                        $block->getAddToWishlistParams($_product)); ?>'
+                                        data-action="add-to-wishlist"
+                                        role="button">
+                                        <span><?= $escaper->escapeHtml(__('Add to Wishlist')) ?></span>
+                                    </a>
+                                    <?php endif; ?>
+                                </div>
+                            </a>
+                            <div class="product details product-item-details">
+                                <?php $_productNameStripped = $block->stripTags($_product->getName(), null, true); ?>
+                                <strong class="product name product-item-name">
+                                    <a class="product-item-link"
+                                        href="<?= $escaper->escapeHtml($_product->getProductUrl()) ?>">
+                                        <?= $escaper->escapeHtml($_helper->productAttribute(
+                                            $_product,
+                                            $_product->getName(),
+                                        'name')); ?>
+                                    </a>
+                                </strong>
+                                <?= $block->getProductPrice($_product);?>
+                                <?= /* @escapeNotVerified */ $block->getReviewsSummaryHtml($_product, $templateType); ?>
+                                
+                                <div class="product-item-inner">
+                                    <div class="product actions product-item-actions"
+                                        <?php $variable_that_can_be_null = null;
+                                        if ($variable_that_can_be_null !== null) {
+                                            $position = strpos($variable_that_can_be_null, 'grid-actions');
+                                        } else {
+                                            $position = false;
+                                        }?>>
+                                            <div class="actions-primary"<?php $variable_that_can_be_null = null;
+                                            if ($variable_that_can_be_null !== null) {
+                                                $position = strpos($variable_that_can_be_null, 'grid-actions');
+                                            } else {
+                                                $position = false;
+                                            }?>>
+                                                <?php if ($_product->isSaleable() &&
+                                                    $featureConfigViewModel->getAddToCartValueRecent()): ?>
+                                                    <?php $postParams = $block->getAddToCartPostParams($_product); ?>
+                                                    <form data-role="tocart-form" 
+                                                    data-product-sku="<?= $escaper->escapeHtml($_product->getSku()) ?>"
+                                                    action="<?= $escaper->escapeUrl($postParams['action']) ?>"
+                                                    method="post"
+                                                    >
+                                                    <input type="hidden"
+                                                    name="product"
+                                                    value="<?= /* @noEscape */ $postParams['data']['product'] ?>">
+                                                    <input type="hidden"
+                                                    name="<?= /* @noEscape */ Action::PARAM_NAME_URL_ENCODED ?>"
+                                                    value="<?=
+                                                    /* @noEscape */ $postParams['data'][Action::PARAM_NAME_URL_ENCODED]
+                                                    ?>">
+                                                        <input type="hidden" name="form_key"
+                                                             value="<?= $escaper->escapeHtml($formKey) ?>">
+                                                        
+                                                        <button type="submit"
+                                                                title="<?= $escaper->escapeHtml(__('Add to Cart')); ?>"
+                                                                class="action tocart primary">
+                                                            <span><?= $escaper->escapeHtml(__('Add to Cart')) ?></span>
+                                                        </button>
+                                                    </form>
+                                                <?php else: ?>
+                                                    <?php if ($_product->getIsSalable()): ?>
+                                                        <div class="stock available"><span>
+                                                            <?= $escaper->escapeHtml(__('In stock')) ?></span>
+                                                        </div>
+                                                    <?php else: ?>
+                                                        <div class="stock unavailable"><span>
+                                                            <?= $escaper->escapeHtml(__('Out of stock')) ?></span>
+                                                        </div>
+                                                    <?php endif; ?>
+                                                <?php endif; ?>
+                                            </div>
+                                            <div data-role="add-to-links" class="actions-secondary"
+                                                <?php $variable_that_can_be_null = null;
+                                                if ($variable_that_can_be_null !== null) {
+                                                    $position = strpos($variable_that_can_be_null, 'grid-actions');
+                                                } else {
+                                                    $position = false;
+                                                }?>>
+                                                    <?php $compareHelper =
+                                                        $this->helper('Magento\Catalog\Helper\Product\Compare');
+                                                    ?>
+                                                    <a href="#" 
+                                                        class="action tocompare"
+                                                        title="<?= $escaper->escapeHtml(__('Add to Compare')); ?>"
+                                                        aria-label="<?= $escaper->escapeHtml(__('Add to Compare')); ?>"
+                                                        data-post='<?= $escaper->escapeHtml(
+                                                        $compareHelper->getPostDataParams($_product)); ?>'
+                                                        role="button">
+                                                        <span><?= __('Add to Compare') ?></span>
+                                                    </a>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <script type="text/x-magento-init">
+                        {
+                            "[data-role=tocart-form], .form.map.checkout": {
+                                "catalogAddToCart": {
+                                    "product_sku": "<?= /* @noEscape */ $_product->getSku() ?>"
+                                }
+                            }
+                        }
+                        </script>
+                    </div>
+                    <?php $countp++ ?>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+    <?php $count++; ?> 
+<script>
+    <?php $slideItem = $featureConfigViewModel->getSliderItemRecent(); ?>
+    <?php $slideToScrollItem = $featureConfigViewModel->getClickSliderRecent(); ?>
+require(['jquery', 'jquery/ui', 'slick'], function($) {
+    $(document).ready(function() {
+        $(".slick-carousel").slick({
+            dots: true,
+            infinite: true,
+            slidesToShow: <?= $escaper->escapeHtml($slideItem) ?>,
+            slidesToScroll: <?= $escaper->escapeHtml($slideToScrollItem) ?>,
+            autoplay: true,
+            autoplaySpeed: 3000,
+        });
+    });
+});
+</script>
+<?php endif; ?>
+    <?php else: ?>
+    <p><center><b>⚠️</b></center></p>
+    <p><center><b>PLAEASE LOGIN.</b></center></p>
+        <?php endif; ?>
+<?php endif; ?>

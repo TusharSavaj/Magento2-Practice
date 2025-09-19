@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--/**
+ * Spares Zone
+ *
+ * @package     SparesZone_DuplicateCMS
+ * @copyright   Copyright (c) Spares Zone (https://www.spareszone.in/)
+ * @license     https://www.spareszone.in/LICENSE.txt
+ */-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="buttons" xsi:type="array">
+            <item name="duplicate" xsi:type="string">SparesZone\DuplicateCMS\Block\Adminhtml\Block\Edit\DuplicateButton</item>
+        </item>
+    </argument>
+    <!-- ... other form elements ... -->
+</form>

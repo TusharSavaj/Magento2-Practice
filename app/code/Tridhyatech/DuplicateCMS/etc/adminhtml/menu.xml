@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Tridhyatech Team
+ * @copyright Copyright (c) 2024 Tridhyatech (https://www.tridhyatech.com)
+ * @package Tridhyatech_DuplicateCMS
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="Tridhyatech_DuplicateCMS::duplicatecms" title="Tridhyatech DuplicateCMS" module="Tridhyatech_DuplicateCMS" sortOrder="10" resource="Tridhyatech_DuplicateCMS::config" parent="Tridhyatech_Core::view"/>
+        <add id="Tridhyatech_DuplicateCMS::settings" title="DuplicateCMS Configuration" module="Tridhyatech_DuplicateCMS" sortOrder="20" parent="Tridhyatech_DuplicateCMS::duplicatecms" action="adminhtml/system_config/edit/section/duplicatecms" resource="Tridhyatech_DuplicateCMS::config"/>
+    </menu>
+</config>
