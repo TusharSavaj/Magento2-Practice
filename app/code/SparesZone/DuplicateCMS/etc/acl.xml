@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Tridhyatech Team
+ * @copyright Copyright (c) 2024 Tridhyatech (https://www.tridhyatech.com)
+ * @package Tridhyatech_DuplicateCMS
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="SparesZone_Core::config" title="DuplicateCMS Core">
+                                <resource id="SparesZone_DuplicateCMS::config" title="DuplicateCMS Configuration" sortOrder="60" />
+                            </resource>
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

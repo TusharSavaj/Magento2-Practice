@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Spares Zone
+ *
+ * @package     SparesZone_Core
+ * @copyright   Copyright (c) Spares Zone (https://www.spareszone.in/)
+ * @license     https://www.spareszone.in/LICENSE.txt
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="admin">
+        <route id="spareszone" frontName="spareszone">
+            <module name="SparesZone_Core"/>
+        </route>
+    </router>
+</config>

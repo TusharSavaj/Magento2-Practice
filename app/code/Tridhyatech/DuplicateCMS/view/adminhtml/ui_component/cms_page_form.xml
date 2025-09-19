@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- /**
+ * @author Tridhyatech Team
+ * @copyright Copyright (c) 2023 Tridhyatech (https://www.tridhyatech.com)
+ * @package Tridhyatech_DuplicateCMS
+ */ -->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <settings>
+        <buttons>
+            <button name="duplicate" class="Tridhyatech\DuplicateCMS\Block\Adminhtml\Page\Edit\DuplicateButton"/>
+        </buttons>
+    </settings>
+</form>

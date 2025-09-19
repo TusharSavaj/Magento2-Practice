@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--/**
+ * Spares Zone
+ *
+ * @package     SparesZone_DuplicateCMS
+ * @copyright   Copyright (c) Spares Zone (https://www.spareszone.in/)
+ * @license     https://www.spareszone.in/LICENSE.txt
+ */-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <listingToolbar name="listing_top">
+        <massaction name="listing_massaction">
+            <action name="duplicateblock">
+                <settings>
+                    <confirm>
+                        <message translate="true">Are you sure you want to duplicate selected items?</message>
+                        <title translate="true">Duplicate items</title>
+                    </confirm>
+                    <url path="duplicatecms/block/massDuplicate"/>
+                    <type>duplicateblock</type>
+                    <label translate="true">Duplicate</label>
+                </settings>
+            </action>
+        </massaction>
+    </listingToolbar>
+</listing>

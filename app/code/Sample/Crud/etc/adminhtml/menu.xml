@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Sample_Crud::contact" title="Contact" module="Sample_Crud" sortOrder="51" resource="Sample_Crud::contact"/>
+        <add id="Sample_Crud::hello_configuration" title="Contact Details" module="Sample_Crud" sortOrder="99" parent="Sample_Crud::contact" action="crud/contact/index/" resource="Sample_Crud::contact"/>
+    </menu>
+</config>
+

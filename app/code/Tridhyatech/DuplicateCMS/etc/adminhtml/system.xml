@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Tridhyatech Team
+ * @copyright Copyright (c) 2024 Tridhyatech (https://www.tridhyatech.com)
+ * @package Tridhyatech_DuplicateCMS
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="duplicatecms" translate="label" type="text" sortOrder="300" canRestore="1" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>DuplicateCMS</label>
+            <tab>tridhyatech</tab>
+            <resource>Tridhyatech_DuplicateCMS::config</resource>
+            <group id="general" translate="label" type="text" sortOrder="1" canRestore="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>DuplicateCMS Settings</label>
+                <field id="active" translate="label comment" sortOrder="1" type="select" canRestore="1" showInDefault="1" showInWebsite="0" showInStore="1">
+                    <label>Enable/Disable Plugin</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

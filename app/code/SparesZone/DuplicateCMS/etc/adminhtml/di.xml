@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<!--/**
+ * Spares Zone
+ *
+ * @package     SparesZone_DuplicateCMS
+ * @copyright   Copyright (c) Spares Zone (https://www.spareszone.in/)
+ * @license     https://www.spareszone.in/LICENSE.txt
+ */-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Cms\Ui\Component\Listing\Column\PageActions" type="SparesZone\DuplicateCMS\Ui\Component\Listing\Column\PageActions" />
+    <preference for="Magento\Cms\Ui\Component\Listing\Column\BlockActions" type="SparesZone\DuplicateCMS\Ui\Component\Listing\Column\BlockActions" />
+</config>
