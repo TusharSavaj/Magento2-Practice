@@ -116,3 +116,4 @@ robots.txt
 # Zone.Identifier
 # ----------------------------------------
 *.Zone.Identifier
+gitignore:Zone.Identifier

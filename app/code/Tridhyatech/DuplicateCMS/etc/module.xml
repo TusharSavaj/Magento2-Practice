@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * @author Tridhyatech Team
+ * @copyright Copyright (c) 2024 Tridhyatech (https://www.tridhyatech.com)
+ * @package Tridhyatech_DuplicateCMS
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="Tridhyatech_DuplicateCMS" setup_version="1.0.0">
+        <sequence>
+            <module name="Magento_Cms"/>
+            <module name="Tridhyatech_Core"/>
+        </sequence>
+    </module>
+</config>

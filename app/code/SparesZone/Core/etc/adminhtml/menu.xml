@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Spares Zone
+ *
+ * @package     SparesZone_Core
+ * @copyright   Copyright (c) Spares Zone (https://www.spareszone.in/)
+ * @license     https://www.spareszone.in/LICENSE.txt
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="SparesZone_Core::view" title="SparesZone" module="SparesZone_Core" sortOrder="74" resource="SparesZone_Core::core"/>
+        <!-- <add id="SparesZone_Core::marketplace" title="SparesZone Marketplace" module="SparesZone_Core" sortOrder="10000" action="spareszone/marketplace/index" target="_blank" parent="SparesZone_Core::view" resource="SparesZone_Core::marketplace"/> -->
+    </menu>
+</config>

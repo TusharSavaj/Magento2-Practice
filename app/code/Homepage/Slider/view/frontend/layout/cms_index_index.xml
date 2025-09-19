@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="Homepage\Slider\Block\BestSeller" name="bestseller" template="Homepage_Slider::bestsellerproduct.phtml">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">Homepage\Slider\ViewModel\Config</argument>
+                </arguments>
+            </block>
+            <block class="Homepage\Slider\Block\MostViewedProducts" name="mostviewedproduct" template="Homepage_Slider::mostviwevedproduct.phtml">
+                 <arguments>
+                    <argument name="view_model" xsi:type="object">Homepage\Slider\ViewModel\Config</argument>
+                </arguments>
+            </block>
+            <block class="Homepage\Slider\Block\FeatursProduct" name="featureproduct" template="Homepage_Slider::featuresproduct.phtml">
+                 <arguments>
+                    <argument name="view_model" xsi:type="object">Homepage\Slider\ViewModel\Config</argument>
+                </arguments>
+            </block>
+            <block class="Homepage\Slider\Block\NewProduct" name="newproduct" template="Homepage_Slider::newproduct.phtml">
+                 <arguments>
+                    <argument name="view_model" xsi:type="object">Homepage\Slider\ViewModel\Config</argument>
+                </arguments>
+            </block>
+            <block class="Homepage\Slider\Block\RecentOrder" cacheable="false" name="recent_order" template="Homepage_Slider::recentorder.phtml">
+                 <arguments>
+                    <argument name="view_model" xsi:type="object">Homepage\Slider\ViewModel\Config</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

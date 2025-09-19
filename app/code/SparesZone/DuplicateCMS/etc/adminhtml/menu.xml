@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--/**
+ * Spares Zone
+ *
+ * @package     SparesZone_DuplicateCMS
+ * @copyright   Copyright (c) Spares Zone (https://www.spareszone.in/)
+ * @license     https://www.spareszone.in/LICENSE.txt
+ */-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="SparesZone_DuplicateCMS::duplicatecms" title="SparesZone DuplicateCMS" module="SparesZone_DuplicateCMS" sortOrder="10" resource="SparesZone_DuplicateCMS::config" parent="SparesZone_Core::view"/>
+        <add id="SparesZone_DuplicateCMS::settings" title="DuplicateCMS Configuration" module="SparesZone_DuplicateCMS" sortOrder="20" parent="SparesZone_DuplicateCMS::duplicatecms" action="adminhtml/system_config/edit/section/duplicatecms" resource="SparesZone_DuplicateCMS::config"/>
+    </menu>
+</config>
