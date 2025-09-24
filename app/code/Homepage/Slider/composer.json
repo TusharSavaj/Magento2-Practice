@@ -1,0 +1,21 @@
+{
+    "name": "Homepage/products",
+    "description": "Display catalog products on any page with slider, sidebar or grid view",
+    "require": {
+        "tridhyatech/core": "*"
+    },
+    "type": "magento2-module",
+    "version": "1.0.1",
+    "minimum-stability": "stable",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+
+    "autoload": {
+        "files": ["registration.php"],
+        "psr-4": {
+            "Homepage\\Products\\": ""
+        }
+    }
+}

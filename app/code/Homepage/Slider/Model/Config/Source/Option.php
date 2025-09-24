@@ -6,6 +6,11 @@ use Magento\Framework\Option\ArrayInterface;
 
 class Option implements ArrayInterface
 {
+    /**
+     * Click To Slide Product
+     *
+     * @return void
+     */
     public function toOptionArray()
     {
         return [

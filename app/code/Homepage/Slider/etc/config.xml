@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <slider>
+            <bestseller>
+                <enabled>1</enabled>
+                <display_type>1</display_type>
+                <title>Best Seller Products</title>
+                <display_addtocart>1</display_addtocart>
+                <display_addtowishlist>1</display_addtowishlist>
+                <display>10</display>
+                <display_titles>1</display_titles>
+            </bestseller>
+            <sliderconfiguration>
+                <delay>3000</delay>
+                <product_slider_item>4</product_slider_item>
+                <next_previous>1</next_previous>
+            </sliderconfiguration>
+        </slider>
+    </default>
+</config>

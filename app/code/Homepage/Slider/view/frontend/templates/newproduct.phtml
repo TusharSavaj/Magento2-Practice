@@ -90,7 +90,7 @@ $featureConfigViewModel = $block->getData('view_model');
                                         <?= $escaper->escapeHtml($_helper->productAttribute($_product, $_product->getName(), 'name')) ?>
                                     </a>
                                 </strong>
-                                <?= $block->getProductPrice($_product);?>
+                                <?= $escaper->escapeHtml($block->getProductPrice($_product));?>
                                 <?= $block->getReviewsSummaryHtml($_product, $templateType); ?>
                                 
                                 <div class="product-item-inner">
