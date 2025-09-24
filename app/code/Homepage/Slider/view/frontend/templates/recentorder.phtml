@@ -99,7 +99,7 @@ $featureConfigViewModel = $block->getData('view_model');
                                     </a>
                                 </strong>
                                 <?= $block->getProductPrice($_product);?>
-                                <?= /* @escapeNotVerified */ $block->getReviewsSummaryHtml($_product, $templateType); ?>
+                                <?= $escaper->escapeHtml($block->getReviewsSummaryHtml($_product, $templateType)); ?>
                                 
                                 <div class="product-item-inner">
                                     <div class="product actions product-item-actions"
@@ -169,7 +169,7 @@ $featureConfigViewModel = $block->getData('view_model');
                                                         data-post='<?= $escaper->escapeHtml(
                                                         $compareHelper->getPostDataParams($_product)); ?>'
                                                         role="button">
-                                                        <span><?= __('Add to Compare') ?></span>
+                                                        <span><?= $escaper->escapeHtml(__('Add to Compare')) ?></span>
                                                     </a>
                                             </div>
                                     </div>

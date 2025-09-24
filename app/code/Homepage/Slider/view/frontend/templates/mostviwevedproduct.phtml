@@ -98,7 +98,7 @@ $featureConfigViewModel = $block->getData('view_model');
                                     </a>
                                 </strong>
                                 <?= $block->getProductPrice($_product);?>
-                                <?= /* @escapeNotVerified */ $block->getReviewsSummaryHtml($_product, $templateType); ?>
+                                <?= $escaper->escapeHtml($block->getReviewsSummaryHtml($_product, $templateType)); ?>
                                 
                                 <div class="product-item-inner">
                                     <div class="product actions product-item-actions"

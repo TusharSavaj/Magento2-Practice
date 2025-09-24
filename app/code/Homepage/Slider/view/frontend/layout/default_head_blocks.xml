@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Homepage_Slider::css/materialdesignicons.min.css" order="101"/>
+        <css src="Homepage_Slider::css/swiper.min.css" order="102"/>
+        <css src="Homepage_Slider::css/style.css" order="103"/>
+    </head>
+</page>
