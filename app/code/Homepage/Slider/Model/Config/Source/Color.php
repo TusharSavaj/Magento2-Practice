@@ -2,15 +2,28 @@
 
 namespace Homepage\Slider\Model\Config\Source;
 
-class Color extends \Magento\Config\Block\System\Config\Form\Field {
-
+class Color extends \Magento\Config\Block\System\Config\Form\Field
+{
+    /**
+     * Color Constructor
+     *
+     * @param \Magento\Backend\Block\Template\Context $context
+     * @param array $data
+     */
     public function __construct(
-    \Magento\Backend\Block\Template\Context $context, array $data = []
+        \Magento\Backend\Block\Template\Context $context,
+        array $data = []
     ) {
         parent::__construct($context, $data);
     }
-
-    protected function _getElementHtml(\Magento\Framework\Data\Form\Element\AbstractElement $element) {
+    /**
+     * Give Element Html
+     *
+     * @param \Magento\Framework\Data\Form\Element\AbstractElement $element
+     * @return void
+     */
+    protected function getElementHtml(\Magento\Framework\Data\Form\Element\AbstractElement $element)
+    {
         $html = $element->getElementHtml();
         $value = $element->getData('value');
         $html .= '<script type="text/javascript">

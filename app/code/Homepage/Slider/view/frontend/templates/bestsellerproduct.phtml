@@ -4,216 +4,345 @@ use Magento\Framework\App\Action\Action;
 $featureConfigViewModel = $block->getData('view_model');
 ?>
 <?php if ($featureConfigViewModel->getEnabledBestSeller()): ?>
-    <?php $showProduct = $featureConfigViewModel->getProductItemsBestSeller();
-    $_productCollection = $block->bestSellerProducts();
-    if ($_productCollection->getSize() <= 0) {
+    <?php $showProduct = $featureConfigViewModel->getProductItemsBestseller();
+    $productCollection = $block->bestSellerProducts();
+    if ($productCollection->getSize() <= 0) {
         return;
     }
     ?>
-    <?php $color = $featureConfigViewModel->getTittleColorBestSeller(); ?>
-    <h2 style='color:<?php echo $escaper->escapeHtml($color); ?>'>
-        <center><b>
-                <?php echo $escaper->escapeHtml($featureConfigViewModel->getSliderTitleBestSeller()) ?>
-            </b></center>
-    </h2>
-    <div class="container-">
-        <?php $_helper = $this->helper('Magento\Catalog\Helper\Output'); ?>
-        <?php
-        $viewMode = 'grid';
-        $image = 'category_page_grid';
-        $showDescription = false;
-        $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
-        $pos = $block->getPositioned();
-        $position = '';
-        $formKey = $block->getFormKey();
-        ?>
-        <style>
-            .products-grid .product-item-inner {
-                margin: unset;
-            }
-        </style>
-        <div class="ind-container">
-            <div class=" products wrapper grid products-grid <?php echo $escaper->escapeHtml($viewMode); ?>
-             products-<?php echo $escaper->escapeHtml($viewMode); ?>">
-                <?php $iterator = 1; ?>
-                <div class="products grid items product-items slick-carousel">
-                    <?php $prdCount = 0; ?>
-                    <?php $countp = 0 ?>
-                    <?php foreach ($_productCollection as $_product): ?>
-                        <?php if ($countp >= $showProduct) {
-                            break;
-                        } ?>
-                        <?php $_product = $block->getLoadProduct($_product->getEntityId()); ?>
-                        <div class="item product product-item">
-                            <div class="product-item-info item" data-container="product-grid">
-                                <?php
-                                $productImage = $block->getImage($_product, $image);
-                                if ($pos != null) {
-                                    $position = ' style="left:' . $productImage->getWidth() . 'px;'
-                                        . 'top:' . $productImage->getHeight() . 'px;"';
-                                }
-                                ?>
-                                <a href="<?php echo $escaper->escapeHtml($_product->getProductUrl()) ?>"
+    <?php
+        $displayTitles = $featureConfigViewModel->getdisplayTitleBestSeller();
+        $delay = $featureConfigViewModel->getsliderDelayBestSeller();
+        $displayType = $featureConfigViewModel->getdisplayTypeBestSeller();
+        $productTitle = $featureConfigViewModel->getSliderTitleBestSeller();
+        $nextPrevious = $featureConfigViewModel->getsliderNextPreBestSeller();
+        $displayAddtoCart = $featureConfigViewModel->getAddToCartValueBestSeller();
+        $displayAddtoWishlist = $featureConfigViewModel->getWishlistValueBestSeller();
+        $color = $featureConfigViewModel->getTittleColorBestSeller();
+        $slidesNo = $featureConfigViewModel->getSliderItemBestSeller();
+        // $slideToScrollItem = $featureConfigViewModel->getClickSliderBestSeller();
+        
+    $breakPointArray = $featureConfigViewModel->getsliderBreakPointBestSeller();
+    if (isset($breakPointArray)) {
+        $breakPointArray = json_decode($breakPointArray, true);
+        $breakPoint = array_column($breakPointArray, 'break_point');
+        $noOfProducts = array_column($breakPointArray, 'no_of_products');
+        $spaceBetween = array_column($breakPointArray, 'space_between');
+    }
+    $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+    $image = 'category_page_grid';
+    $pos = $block->getPositioned();
+    if ($displayType == "0"): ?>
+<div class="container grid-div">
+        <?php if ($displayTitles == 1): ?>
+        <div class="title mb-5"><h2 style='color:<?= $escaper->escapeHtml($color); ?>'><?= $productTitle; ?></h2></div>
+    <?php endif; ?>
+        <?php if (empty($productCollection)) { echo "<h3>No products found<h3>"; } else { ?>
+      <!-- // displaying products  -->
+    <div class="row main-product">
+            <?php
+            $countp = 0;
+            foreach ($productCollection as $product) {
+                if ($countp >= $showProduct) {
+                    break;
+                }
+                ?>
+                <div class="products col-md-3">
+                    <div class='img-box'>
+                        <?php
+                                $productImage = $block->getImage($product, $image);
+                        if ($pos != null) {
+                            $position = ' style="left:' . $productImage->getWidth() . 'px;'
+                                . 'top:' . $productImage->getHeight() . 'px;"';
+                        }
+                        ?>
+                                <a href="<?= $escaper->escapeHtml($product->getProductUrl()) ?>"
                                     class="product photo product-item-photo" tabindex="-1">
-                                    <?php /* @escapeNotVerified */ echo $productImage->toHtml(); ?>
-                                    <div class="product-discount">
-                                        <?php $originalPrice = $_product->getPrice();
-                                        $finalPrice = $_product->getFinalPrice();
-                                        $discount = 0;
-                                        if ($originalPrice > $finalPrice) {
-                                            $discount = number_format(
-                                                ($originalPrice - $finalPrice) * 100 / $originalPrice,0);
-                                            ?>
-                                            <div class="price_section">
-                                                <span class=""><?= $escaper->escapeHtml($discount . '% Off'); ?></span>
-                                            </div>
-                                        <?php } ?>
-                                    </div>
-                                </a>
-                                <div class="product details product-item-details">
-                                    <?php $_productNameStripped = $block->stripTags(
-                                        $_product->getName(),
-                                        null,
-                                        true); ?>
-                                    <strong class="product name product-item-name">
-                                        <a class="product-item-link"
-                                            href="<?php echo $block->escapeHtml($_product->getProductUrl()) ?>">
-                                            <?= $escaper->escapeHtml($_helper->productAttribute(
-                                            $_product, $_product->getName(), 'name')); ?>
-                                        </a>
-                                    </strong>
-                                    <?php echo $block->getProductPrice($_product); ?>
-                                    <?php echo $block->getReviewsSummaryHtml($_product, $templateType); ?>
+                                    <?= $productImage->toHtml(); ?>
+                           
+                        <div class="icon-box p-5">
+                            <ul class="d-flex justify-content-center mb-0">
+                                <!-- add to cart link -->
+                                <?php $addToCartUrl = $block->getAddToCartUrl($product);  //Add to cart ?>
+                                <?php if ($displayAddtoCart == 1): ?>
+                                <form data-role="tocart-form" action="<?= $addToCartUrl ?>" method="post"> 
+                                        <?= $block->getBlockHtml('formkey')?>
+                                    <div>
+                                        <button type="submit"  class="btn cart-class">
+                                            <i class="mdi mdi-cart-outline"></i>
+                                        </button>
+                                    </div>  
+                                </form>
+                                <?php endif; ?>
+                                <?php if ($displayAddtoWishlist == 1): ?>
+                                <!-- wish list link-->
+                                <a href="" data-post='<?= $escaper->escapeHtml($featureConfigViewModel->getWishlistAddParams($product)) ?>' class="action towishlist wishlist-class" data-action="add-to-wishlist"><i class="mdi mdi-heart-outline"></i></a>
+                                <?php endif; ?>
+                            </ul>                  
+                        </div> <!-- icon-box -->
+                    </div> <!-- img-box -->
+                    <div class='box-text p-3'>
+                        <?=  "<a href='".$product->getProductUrl()."' class='mb-0'>".$product->getName()."</a>";  //product name and url
+                        ?>
+                        <?= $block->getProductPrice($product); ?>
+                        <?= $block->getReviewsSummaryHtml($product, $templateType); ?>
+                    </div> <!-- box-text -->
+                </div>  <!-- col-md- -->
+                <?php $countp++; ?>
+            <?php   }  ?>
+            </div>   <!-- row -->
+                <?php } ?> <!-- else  over -->
+</div>   <!-- container -->
 
-                                    <div class="product-item-inner">
-                                        <div class="product actions product-item-actions"
-                                            <?php $variable_that_can_be_null = null;
-                                            if ($variable_that_can_be_null !== null) {
-                                                $position = strpos(
-                                                    $variable_that_can_be_null,
-                                                    'grid-actions'
-                                                );
-                                            } else {
-                                                $position = false;
-                                            } ?>>
-                                            <div class="actions-primary"
-                                                <?php $variable_that_can_be_null = null;
-                                                if ($variable_that_can_be_null !== null) {
-                                                    $position = strpos(
-                                                        $variable_that_can_be_null,
-                                                        'grid-actions'
-                                                    );
-                                                } else {
-                                                    $position = false;
-                                                }
-                                                ?>>
-                                                <?php if (
-                                                    $_product->isSaleable() &&
-                                                    $featureConfigViewModel->getAddToCartValueBestSeller()
-                                                ): ?>
-                                                    <?php $postParams = $block->getAddToCartPostParams($_product); ?>
-                                                    <form data-role="tocart-form"
-                                                        data-product-sku="<?= $escaper->escapeHtml(
-                                                            $_product->getSku()) ?>"
-                                                        action="<?= $escaper->escapeUrl($postParams['action']) ?>"
-                                                        method="post">
-                                                        <input type="hidden"
-                                                            name="product"
-                                                            value="<?= $escaper->escapeHtml(
-                                                                $postParams['data']['product']) ?>">
-                                                        <input type="hidden"
-                                                            name="<?= /* @noEscape */ Action::PARAM_NAME_URL_ENCODED ?>"
-                                                            value="<?=
-                                                                    $escaper->escapeHtml(
-                                                                    $postParams['data']
-                                                                    [Action::PARAM_NAME_URL_ENCODED])
-                                                                    ?>">
-                                                        <input type="hidden" name="form_key"
-                                                            value="<?= $escaper->escapeHtml($formKey) ?>">
+<script>
+require(['jquery', 'jquery/ui'], function($)
+{
+  $(document).ready(function(){
+    if ($('.cart-class').length && $('.wishlist-class').length )
+    {
+    }
+    else
+    {
+        $(".cart-class").addClass("width-100-button");
+        $(".wishlist-class").addClass("width-100-button");
+    }
+  });
+});
+</script>
+    <?php endif; ?> <!-- display type = 0 if over  -->
 
-                                                        <button type="submit"
-                                                            title="
-                                                                <?php
-                                                                echo $escaper->escapeHtml(__('Add to Cart'));
-                                                                ?>"
-                                                            class="action tocart primary">
-                                                            <span>
-                                                                <?php
-                                                                echo $escaper->escapeHtml(__('Add to Cart'))
-                                                                ?>
-                                                            </span>
-                                                        </button>
-                                                    </form>
-                                                <?php else: ?>
-                                                    <?php if ($_product->getIsSalable()): ?>
-                                                        <div class="stock available"><span>
-                                                            <?php echo $escaper->escapeHtml(__('In stock')) ?></span>
-                                                        </div>
-                                                    <?php else: ?>
-                                                        <div class="stock unavailable"><span>
-                                                                <?php echo $escaper->escapeHtml(
-                                                                __('Out of stock'))
-                                                                ?></span>
-                                                        </div>
-                                                    <?php endif; ?>
+    <?php if ($displayType == "1"): ?>
+
+<div class="section3 py-5 slider-div">
+    <div class="container">
+            <?php if ($displayTitles == 1): ?>
+            <div class="title mb-5"><h2 style='color:<?= $escaper->escapeHtml($color); ?>'><?= $productTitle; ?></h2></div>
+        <?php endif; ?>
+            <?php if (empty($productCollection)) { echo "<h3>No products found<h3>"; } else { ?>
+        <div class="swiper-container slider-div-best-seller slider-div-best-seller">
+            <div class="swiper-wrapper">
+                <?php
+                    $countp = 0;
+                foreach ($productCollection as $product) {
+                    if ($countp >= $showProduct) {
+                        break;
+                    }
+                    ?>
+                <div class="swiper-slide text-center">
+                    <div class="img-box">
+                        <?php
+                            $productImage = $block->getImage($product, $image);
+                            if ($pos != null) {
+                                $position = ' style="left:' . $productImage->getWidth() . 'px;'
+                                . 'top:' . $productImage->getHeight() . 'px;"';
+                            }
+                        ?>
+                            <a href="<?= $escaper->escapeHtml($product->getProductUrl()) ?>"
+                            class="product photo product-item-photo" tabindex="-1">
+                            <?= /* @escapeNotVerified */ $productImage->toHtml(); ?></a>
+                        <?php if ($displayAddtoCart == 1 || $displayAddtoWishlist == 1) { ?>
+                        <div class="icon-box p-5">
+                           <ul class="d-flex justify-content-center mb-0" style="list-style: none">
+                            <!-- add to cart link -->
+                            <?php $addToCartUrl = $block->getAddToCartUrl($product);  //Add to cart ?>
+                            <?php if ($displayAddtoCart == 1): ?>
+                                <form data-role="tocart-form" action="<?= $addToCartUrl ?>" method="post"> 
+                                    <?= $block->getBlockHtml('formkey')?>
+                                    <div class="btn">
+                                        <button type="submit" >
+                                        <a><i class="mdi mdi-cart-outline"></i></a>
+                                        </button>
+                                    </div>  
+                                </form>
+                            <?php endif; ?>
+                            <!-- wish list link-->
+                            <?php if ($displayAddtoWishlist == 1): ?>
+                                <li><a href="" data-post='<?= $escaper->escapeHtml($featureConfigViewModel->getWishlistAddParams($product)) ?>' class="action towishlist" data-action="add-to-wishlist"><i class="mdi mdi-heart-outline"></i></a></li>
+                            <?php endif; ?>
+                            </ul>
+                        </div> <!-- icon-box over -->
+                        <?php } ?> <!-- for shadow id -->
+                    </div> <!-- img-box over -->
+               
+                    <div class="box-text p-3">
+                        <?=  "<a href='".$product->getProductUrl()."' class='mb-0 product-name'>".$product->getName()."</a>";  //product name and url
+                        ?>
+                        <?= $block->getProductPrice($product); ?>
+                        <?= $block->getReviewsSummaryHtml($product, $templateType); ?>
+                    </div>  <!-- box-text over -->
+                </div> <!-- swier slider over -->
+                    <?php $countp++ ?>
+                <?php  } //foreach over   ?>
+            </div> <!-- swiper-wraapper over -->
+
+                <?php if ($nextPrevious == 1): ?>
+                <div class='swiper-button-next'><i class='mdi mdi-chevron-right'></i></div>
+                <div class='swiper-button-prev'><i class='mdi mdi-chevron-left'></i></div>
+            <?php endif; ?>
+        </div> <!-- swiper-contaainer -->
+            <?php } ?> <!-- else  -->
+    </div> <!-- container -->
+</div> <!-- section 3 -->
+
+<!-- confing value for delay between two slides -->
+        <?php $del = '3000';
+        if (!empty($delay)): $del = $delay; ?>
+            <?php endif; ?>
+
+<!-- config value for total no. of products per slides -->
+        <?php $slidesDisplay = '4';
+        if (isset($slidesNo)): $slidesDisplay = $slidesNo; ?>
+            <?php endif; ?>
+
+
+<script>
+require([
+        'jquery',
+        'swiper'], function ($, Swiper) {
+    var swiper = new Swiper('.slider-div-best-seller', {
+      slidesPerView: <?= $slidesDisplay; ?> ,
+      spaceBetween: 30,
+    
+    breakpoints: {  
+        <?php if (isset($breakPoint)) { ?>
+            <?php for ($i=0; $i < count($breakPoint); $i++) { ?>
+
+                <?= $breakPoint[$i]; ?>: {       
+         slidesPerView: <?= $noOfProducts[$i]; ?>,
+         spaceBetween: <?= $spaceBetween[$i]; ?>
+      },
+
+   <?php  } ?>   
+   <?php  } ?>   
+   },
+      autoplay: {
+        delay: <?= $del; ?>,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+   });
+  
+ </script>
+    <?php endif; ?> <!--  display typ = 1 if over -->
+
+    <?php  if ($displayType == '2'): ?>
+<div class="section5 py-5 my-5 sidebar-div">
+    <div class="container">
+        <div class="row">
+            <div class="col-4">
+                <div class="swiper-container swiper-container2">
+                    <div class="heading">
+                        <div class="row align-items-center sidebar-heading">
+                            <div class="col">
+                                <?php if ($displayTitles == 1): ?>
+                                <div class="title"><h3 class="text-left mb-0" style='color:<?= $escaper->escapeHtml($color); ?>'><?= $productTitle; ?></h3></div>
+                                <?php endif; ?>
+                            </div>
+                            <!-- config value for displaying nav icons on/off -->
+                            <?php // $nav = 'false'; if($nextPrevious == 1):  $nav = 'true'; ?>
+                            <?php // endif; ?>
+                            <?php if ($nextPrevious == 1): ?>
+                                <div class="col-auto d-flex sidebar-arrow">
+                                    <div class="swiper-button-prev"><i class="mdi mdi-chevron-left"></i></div>
+                                    <div class="swiper-button-next"><i class="mdi mdi-chevron-right"></i></div>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    </div>  <!-- heading over -->
+                    <?php if (empty($productCollection)) { echo "<h3>No products found<h3>"; } else { ?>
+                    <div class="swiper-wrapper">
+                        <?php
+                            $countp = 0;
+                        foreach ($productCollection as $product) {
+                            if ($countp >= $showProduct) {
+                                break;
+                            }
+                            ?>
+                        <div class="swiper-slide">
+                            <div class="row align-items-center">
+                                <div class="col-4">
+                                    <div class="main-div">
+                                        <div class="image-div">
+                                        <?php
+                                        $productImage = $block->getImage($product, $image);
+                                        if ($pos != null) {
+                                            $position = ' style="left:' . $productImage->getWidth() . 'px;'
+                                                . 'top:' . $productImage->getHeight() . 'px;"';
+                                        }
+                                        ?>
+                                <a href="<?= $escaper->escapeHtml($product->getProductUrl()) ?>"
+                                    class="product photo product-item-photo" tabindex="-1">
+                                <?= /* @escapeNotVerified */ $productImage->toHtml(); ?>
+                                        </div>
+                                        <div class="col box-text pl-3 sidebar-content">
+                                        <?=  "<a href='".$product->getProductUrl()."' class='mb-1'>".$product->getName()."</a>";  //product name and url
+
+                                        $addToCartUrl = $block->getAddToCartUrl($product);  //Add to cart
+                                        echo $block->getProductPrice($product);
+                                        echo $block->getReviewsSummaryHtml($product, $templateType);
+                                        ?>
+                                            <div class="sidebar-icons">
+                                            <?php if ($displayAddtoCart == 1): ?>
+                                                <form data-role="tocart-form" action="<?= $addToCartUrl ?>" method="post"> 
+                                                    <?= $block->getBlockHtml('formkey')?>
+                                                    <button type="submit" class="btn btn-outline-dark btn-sm">
+                                                        <i class="mdi mdi-cart-outline"></i>
+                                                    </button>
+                                                </form>
+                                                <?php endif; ?>
+
+                                            <?php if ($displayAddtoWishlist == 1): ?>
+                                                <!-- wish list link-->
+                                                <a href="" data-post='<?= $escaper->escapeHtml($featureConfigViewModel->getWishlistAddParams($product)) ?>' class="btn btn-outline-dark btn-sm mt-1" data-action="add-to-wishlist"><i class="mdi mdi-heart-outline"></i></a>
                                                 <?php endif; ?>
                                             </div>
-                                            <div data-role="add-to-links" class="actions-secondary"
-                                                <?php $variable_that_can_be_null = null;
-                                                if ($variable_that_can_be_null !== null) {
-                                                    $position = strpos($variable_that_can_be_null, 'grid-actions');
-                                                } else {
-                                                    $position = false;
-                                                }
-                                                ?>>
-                                                <?php if ($featureConfigViewModel->getWishlistValueBestSeller()): ?>
-                                                            <a href="#" 
-                                                            class="action towishlist"
-                                                            title="<?php echo $escaper->escapeHtml(__('Add to Wishlist')); ?>"
-                                                            aria-label="<?php echo $escaper->escapeHtml(__('Add to Wishlist')); ?>"
-                                                            data-post='<?php echo $escaper->escapeHtml(
-                                                            $block->getAddToWishlistParams($_product)
-                                                            ); ?>'
-                                                data-action="add-to-wishlist"
-                                                role="button">
-                                                <span><?php echo $escaper->escapeHtml(__('Add to Wishlist')) ?></span>
-                                            </a>
-                                        <?php endif ?>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                       </div> <!-- col over -->
+                                    </div> <!-- main div over -->
+                                </div> <!-- col-4 div over -->
+                            </div>  <!-- row over -->
+                        </div>  <!-- swiper-slide over -->
+                            <?php $countp++ ?>
+                    <?php   }   ?> <!-- end foreach loop -->
+                    </div> <!-- swiper wrapper over -->
+                    <?php } ?> <!-- esle over -->
+                </div> <!-- swiper contianer -->
+            </div> <!-- col-4 over -->
+        </div> <!-- row -->
+    </div> <!-- container  -->
+</div> <!-- section 5 -->
 
-                            <script type="text/x-magento-init">
-                                {
-                            "[data-role=tocart-form], .form.map.checkout": {
-                                "catalogAddToCart": {
-                                    "product_sku": "<?= /* @noEscape */ $_product->getSku() ?>"
-                                }
-                            }
-                        }
-                        </script>
-                        </div>
-                        <?php $countp++ ?>
-                    <?php endforeach; ?>
-                </div>
-            </div>
-        </div>
-        <script>
-            <?php $slideItem = $featureConfigViewModel->getSliderItemBestSeller(); ?>
-            <?php $slideToScrollItem = $featureConfigViewModel->getClickSliderBestSeller(); ?>
-            require(['jquery', 'jquery/ui', 'slick'], function($) {
-                $(document).ready(function() {
-                    $(".slick-carousel").slick({
-                        dots: true,
-                        infinite: true,
-                        slidesToShow: <?php echo $escaper->escapeHtml($slideItem) ?>,
-                        slidesToScroll: <?php echo $escaper->escapeHtml($slideToScrollItem) ?>,
-                        autoplay: true,
-                        autoplaySpeed: 3000,
-                    });
-                });
-            });
-        </script>
-        <?php endif ?>
+<!-- config value for delay between two slides -->
+        <?php $del = '3000';
+        if (!empty($delay)): $del = $delay; ?>
+            <?php endif; ?>
+
+<!-- config value for no. of products per slides -->
+        <?php $slidesDisplay = '3';
+        if (isset($slidesNo)): $slidesDisplay = $slidesNo; ?>
+            <?php endif; ?>
+
+<script>
+require([
+        'jquery',
+        'swiper'], function ($, Swiper) {
+    var swiper = new Swiper('.swiper-container2', {
+      slidesPerView: 1,
+      slidesPerColumn: 3,
+      spaceBetween: 0,
+      autoplay: {
+    delay: <?= $del; ?>,
+  },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+   });
+
+</script>
+
+    <?php endif; ?>  <!-- display = 2 if over -->
+<?php endif; ?>   <!-- slide mode == 1 if over  -->

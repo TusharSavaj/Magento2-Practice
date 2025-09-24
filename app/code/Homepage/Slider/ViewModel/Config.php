@@ -4,6 +4,7 @@ namespace Homepage\Slider\ViewModel;
 use Magento\Framework\View\Element\Block\ArgumentInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\ScopeInterface;
+use Magento\Wishlist\Helper\Data as WishlistHelper;
 
 class Config implements ArgumentInterface
 {
@@ -11,10 +12,15 @@ class Config implements ArgumentInterface
     private const CONFIG_WISHLIST_BESTSELLER = 'slider/bestseller/wishlist_button_display';
     private const CONFIG_TITTLE_BESTSELLER = 'slider/bestseller/title';
     private const CONFIG_ENABLED_BESTSELLER = 'slider/bestseller/enabled';
-    private const CONFIG_SLIDER_ITEM_BESTSELLER = 'slider/bestseller/product_slider_item';
-    private const CONFIG_CLICKTOSLIDE_BESTSELLER = 'slider/bestseller/click_slide';
     private const CONFIG_TEXTCOLOR_BESTSELLER = 'slider/bestseller/background_color';
     private const CONFIG_PRODUCT_SLIDER_BESTSELLER = 'slider/bestseller/product_show';
+    private const CONFIG_FROM_BESTSELLER = 'slider/bestseller/from';
+    private const CONFIG_DISPLAY_TYPE_BESTSELLER = 'slider/bestseller/display_type';
+    private const CONFIG_DISPLAY_TITLES_BESTSELLER = 'slider/bestseller/display_titles';
+    private const CONFIG_SLIDER_DELAY_BESTSELLER = 'slider/sliderconfiguration/delay';
+    private const CONFIG_SLIDER_ITEM_BESTSELLER = 'slider/sliderconfiguration/product_slider_item';
+    private const CONFIG_SLIDER_NEXT_PREVIOUS_BESTSELLER = 'slider/sliderconfiguration/next_previous';
+    private const CONFIG_SLIDER_BREAK_POINT_BESTSELLER = 'slider/sliderconfiguration/break_point';
 
     private const CONFIG_ADDTOCART_MOSTVIEW = 'slider/mostview/add_to_cart_display';
     private const CONFIG_WISHLIST_MOSTVIEW = 'slider/mostview/wishlist_button_display';
@@ -56,6 +62,10 @@ class Config implements ArgumentInterface
      * @var ScopeConfigInterface
      */
     private $scopeConfig;
+    /**
+     * @var WishlistHelper
+     */
+    private $wishlistHelper;
 
     /**
      * MyViewModel constructor.
@@ -63,9 +73,11 @@ class Config implements ArgumentInterface
      * @param ScopeConfigInterface $scopeConfig
      */
     public function __construct(
-        ScopeConfigInterface $scopeConfig
+        ScopeConfigInterface $scopeConfig,
+        WishlistHelper $wishlistHelper
     ) {
         $this->scopeConfig = $scopeConfig;
+        $this->wishlistHelper = $wishlistHelper;
     }
 
     /**
@@ -131,9 +143,9 @@ class Config implements ArgumentInterface
      *
      * @return void
      */
-    public function getClickSliderBestSeller()
+    public function getProductItemsBestseller()
     {
-        $configValue = $this->scopeConfig->getValue(self::CONFIG_CLICKTOSLIDE_BESTSELLER, ScopeInterface::SCOPE_STORE);
+        $configValue = $this->scopeConfig->getValue(self::CONFIG_PRODUCT_SLIDER_BESTSELLER, ScopeInterface::SCOPE_STORE);
 
         return $configValue;
     }
@@ -153,14 +165,94 @@ class Config implements ArgumentInterface
      *
      * @return void
      */
-    public function getProductItemsBestSeller()
+    public function getFromBestSeller()
     {
         $configValue = $this->scopeConfig->getValue(
-            self::CONFIG_PRODUCT_SLIDER_BESTSELLER,
+            self::CONFIG_FROM_BESTSELLER,
             ScopeInterface::SCOPE_STORE
         );
 
         return $configValue;
+    }
+    /**
+     * Give DisplayTypes in BestSeller
+     *
+     * @return void
+     */
+    public function getdisplayTypeBestSeller()
+    {
+        $configValue = $this->scopeConfig->getValue(
+            self::CONFIG_DISPLAY_TYPE_BESTSELLER,
+            ScopeInterface::SCOPE_STORE
+        );
+
+        return $configValue;
+    }
+    /**
+     * Give DisplayTitle on/off
+     *
+     * @return void
+     */
+    public function getdisplayTitleBestSeller()
+    {
+        $configValue = $this->scopeConfig->getValue(
+            self::CONFIG_DISPLAY_TITLES_BESTSELLER,
+            ScopeInterface::SCOPE_STORE
+        );
+
+        return $configValue;
+    }
+    /**
+     * Give Delay in BestSeller
+     *
+     * @return void
+     */
+    public function getsliderDelayBestSeller()
+    {
+        $configValue = $this->scopeConfig->getValue(
+            self::CONFIG_SLIDER_DELAY_BESTSELLER,
+            ScopeInterface::SCOPE_STORE
+        );
+
+        return $configValue;
+    }
+    /**
+     * Give NextPreView in bestseller
+     *
+     * @return void
+     */
+    public function getsliderNextPreBestSeller()
+    {
+        $configValue = $this->scopeConfig->getValue(
+            self::CONFIG_SLIDER_NEXT_PREVIOUS_BESTSELLER,
+            ScopeInterface::SCOPE_STORE
+        );
+
+        return $configValue;
+    }
+    /**
+     * Give BreakPoint in Bestseller
+     *
+     * @return void
+     */
+    public function getsliderBreakPointBestSeller()
+    {
+        $configValue = $this->scopeConfig->getValue(
+            self::CONFIG_SLIDER_BREAK_POINT_BESTSELLER,
+            ScopeInterface::SCOPE_STORE
+        );
+
+        return $configValue;
+    }
+    /**
+     * Get Wishlist Add Params for a product
+     *
+     * @param \Magento\Catalog\Model\Product $product
+     * @return string
+     */
+    public function getWishlistAddParams(\Magento\Catalog\Model\Product $product)
+    {
+        return $this->wishlistHelper->getAddParams($product);
     }
 
     //MostView

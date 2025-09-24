@@ -15,18 +15,18 @@ class FeaturesProduct implements DataPatchInterface
     /**
      * Constants block
      */
-    const ENTITY_TYPE_ID = 'catalog_product';
-    const ATTRIBUTE_CODE = 'featurecode';
+    public const ENTITY_TYPE_ID = 'catalog_product';
+    public const ATTRIBUTE_CODE = 'featurecode';
 
     /**
-     * ModuleDataSetupInterface
+     * ModuleDataSetupInterface DataSetup
      *
      * @var ModuleDataSetupInterface
      */
     private ModuleDataSetupInterface $moduleDataSetup;
 
     /**
-     * EavSetupFactory
+     * EavSetupFactory for SetupFactory
      *
      * @var EavSetupFactory
      */
@@ -47,7 +47,7 @@ class FeaturesProduct implements DataPatchInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Apply Function for attribute
      */
     public function apply(): void
     {
@@ -81,7 +81,7 @@ class FeaturesProduct implements DataPatchInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Give Dependencies
      */
     public static function getDependencies()
     {
@@ -89,7 +89,7 @@ class FeaturesProduct implements DataPatchInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Give Aliases
      */
     public function getAliases()
     {
