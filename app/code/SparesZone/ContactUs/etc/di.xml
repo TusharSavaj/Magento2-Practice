@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="SparesZone\ContactUs\Model\ResourceModel\ContactUs\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">spareszone_contact_us</argument>
+            <argument name="resourceModel" xsi:type="string">SparesZone\ContactUs\Model\ResourceModel\ContactUs</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="contactus_listing_data_source" xsi:type="string">SparesZone\ContactUs\Model\ResourceModel\ContactUs\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <preference for="Magento\Contact\Controller\Index\Post" type="SparesZone\ContactUs\Controller\Index\Post" />
+</config>
