@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--/**
+ * Spares Zone
+ *
+ * @package     SparesZone_DuplicateCMS
+ * @copyright   Copyright (c) Spares Zone (https://www.spareszone.in/)
+ * @license     https://www.spareszone.in/LICENSE.txt
+ */-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="contactus" translate="label" type="text" sortOrder="302" canRestore="1" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>ContactUs</label>
+            <tab>spareszone</tab>
+            <resource>SparesZone_DuplicateCMS::config</resource>
+            <group id="general" translate="label" type="text" sortOrder="1" canRestore="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>ContactUs Setting</label>
+                <field id="active" translate="label comment" sortOrder="1" type="select" canRestore="1" showInDefault="1" showInWebsite="0" showInStore="1">
+                    <label>Enable/Disable Plugin</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

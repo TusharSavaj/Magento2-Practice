@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="SparesZone_ContactUs::contactus" title="SparesZone ContactUs" module="SparesZone_ContactUs" sortOrder="10" resource="SparesZone_ContactUs::contactus" parent="SparesZone_Core::view"/>
+        <add id="SparesZone_ContactUs::settings" title="ContactUs Configuration" module="SparesZone_ContactUs" sortOrder="10" parent="SparesZone_ContactUs::contactus" action="adminhtml/system_config/edit/section/contactus" resource="SparesZone_ContactUs::config"/>
+        <add id="SparesZone_ContactUs::contactus_manage" title="Contacts Management" module="SparesZone_ContactUs" sortOrder="20" parent="SparesZone_ContactUs::contactus" action="contactus/contact/Index" resource="SparesZone_ContactUs::contactus"/>
+    </menu>
+</config>
